@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='style.css')}}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}    <!-- declare a variable called messages -->
+    {% if messages %}                           <!-- check if there are any messages -->
+        {% for message in messages %}           <!-- loop through the messages -->
+            <p>{{message}}</p>                  <!-- display each message in a paragraph tag -->
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="cont">
+    <h1>Add a New Show</h1>
+    <h4 class="back"><a href="/back">TV Shows</a></h4>
+    <h4 class="log"><a href="/logout">logout</a></h4>
+</div>
+    <form action="/submit/tv" method="POST">
+        <label>Title: <input type="text" name="name"></label>
+        <label>Network: <input type="text" name="network"></label>
+        <label>Description: <input type="text" name="description"></label>
+        <label>Release Date: <input type="date" name="date"></label>
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>

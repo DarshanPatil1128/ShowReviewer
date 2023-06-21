@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='style.css')}}" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="cont">
+            <h1>Howdy {{logged_in_user.first_name}}!</h1>
+            <h4 class="back"><a href="/new">Create</a></h4>
+            <h4 class="log"><a href="/logout">logout</a></h4>
+        </div>
+        <h4>All TV Shows: </h4>
+
+        <table>
+            <tr>
+                <td>Title: </td>
+                <td>Network:</td>
+                <td>Release:</td>
+                <td>Actions: </td>
+            </tr>
+            {% for one_show in all_the_shows %}
+            <tr>
+                <td>{{one_show.name}}</td>
+                <td>{{one_show.network}}</td>
+                <td>{{one_show.date.strftime('%B, %d, %Y')}}</td>
+                <td>
+                    <a href="/show/view/{{one_show.id}}">Show</a>
+                    {% if session['user_id'] == one_show.creater.id %}
+                    <a href="/tv/edit/{{one_show.id}}">Edit</a>
+                    <a href="/tv/delete/{{one_show.id}}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='style.css')}}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cont">
+        <h1>{{show.name}}</h1>
+        <h4 class="back"><a href="/back">TV Shows</a></h4>
+        <h4 class="log"><a href="/logout">logout</a></h4>
+    </div>
+    <div class="box">
+    <h3>Network: {{show.network}}</h3>
+    <h3>Release Date: {{show.date.strftime('%m/%d/%Y')}}</h3>
+    <h3>Description: {{show.description}}</h3>
+
+    <h4>Posted By: {{show.user.first_name}} {{show.user.last_name}}</h4>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='style.css')}}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}    <!-- declare a variable called messages -->
+    {% if messages %}                           <!-- check if there are any messages -->
+        {% for message in messages %}           <!-- loop through the messages -->
+            <p>{{message}}</p>                  <!-- display each message in a paragraph tag -->
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="cont">
+    <h1>Edit {{show.name}}</h1>
+    <h4 class="back"><a href="/dashboard">TV Shows</a></h4>
+    <h4 class="log"><a href="/logout">logout</a></h4>
+</div>
+
+    <form action="/tv/update/{{show.id}}", method="post">
+        <label>Name: <input type="text" name="name" value="{{show.name}}"></label>
+        <label>Network: <input type="text" name="network" value="{{show.network}}"></label>
+        <label>Description: <input type="text" name="description" value="{{show.description}}"></label>
+        <label>Date Cooked/Made: <input type="date" name="date" value="{{show.date}}"></label>
+        <input type="submit" value="Update Information">
+    </form>
+</body>
+</html>
